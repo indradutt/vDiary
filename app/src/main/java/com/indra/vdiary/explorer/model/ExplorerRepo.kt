@@ -3,6 +3,7 @@ package com.indra.vdiary.explorer.model
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import com.indra.vdiary.R
+import com.indra.vdiary.common.data.AudioContent
 import com.indra.vdiary.common.data.Content
 import com.indra.vdiary.common.data.TextContent
 import com.indra.vdiary.common.data.VideoContent
@@ -25,20 +26,18 @@ class ExplorerRepo {
                 Date(),
                 "", "http://loremflickr.com/800/600/city?random=2"))
 
-        list.add(VideoContent("Big Buck Bunny" ,
+        list.add(VideoContent("Sintel" ,
                 Date(), Date(),
-                "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+                "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
                 ""))
 
         list.add(TextContent("Sing with me, sing for the years\n" +
                 "Sing for the laughter, sing for the tears",
                 "Dream on", Date(), Date(), "", "http://loremflickr.com/800/600/city?random=3"))
 
-        list.add(TextContent("Us and them \n" +
-                "And after all we're only ordinary men ", "Us and them", Date(), Date(), "", "http://loremflickr.com/800/600/city?random=2"))
+        list.add(AudioContent("Us and them", Date(), Date(), "123", "http://loremflickr.com/800/600/city?random=2"))
 
-        list.add(TextContent("Far away across the field\n" +
-                "The tolling of the iron bell", "Time", Date(), Date(), "", "http://loremflickr.com/800/600/city?random=4"))
+        list.add(AudioContent("Time", Date(), Date(), "123", "http://loremflickr.com/800/600/city?random=4"))
 
         list.add(TextContent("Never stop the car on a drive in the dark\n" +
                 "Never look for the truth in your mother's eyes", "Arriving somewhere...", Date(), Date(), "", "http://loremflickr.com/800/600/city?random=1"))
@@ -76,7 +75,7 @@ class ExplorerRepo {
         list.add(TextContent("By the last breath of the fourth winds blow\n" +
                 "Better raise your ears", "Four horsemen", Date(), Date(), "", "http://loremflickr.com/800/600/city?random=1"))
 
-        list.add(VideoContent("Kill Bill", Date(), Date(), localPath, ""))
+        list.add(VideoContent("Big Buck Bunny", Date(), Date(), localPath, ""))
 
         liveData.value = list
         return liveData

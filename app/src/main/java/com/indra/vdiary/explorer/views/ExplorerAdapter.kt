@@ -5,16 +5,14 @@ import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
 import android.net.Uri
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.MediaController
 import android.widget.VideoView
-import com.bumptech.glide.Glide
 import com.indra.vdiary.BR
 import com.indra.vdiary.R
 import com.indra.vdiary.common.data.Content
+import com.squareup.picasso.Picasso
 
 /**
  * Created by indra.dutt on 3/22/18.
@@ -23,8 +21,8 @@ class ExplorerAdapter(private val list : List<Content>, private val listener : (
     : RecyclerView.Adapter<ExplorerAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val layoutInflator = LayoutInflater.from(parent.context)
-        val binding: ViewDataBinding = DataBindingUtil.inflate(
+        var layoutInflator = LayoutInflater.from(parent.context)
+        var binding: ViewDataBinding = DataBindingUtil.inflate(
                 layoutInflator, R.layout.item_explorer, parent, false)
         return ViewHolder(binding)
     }
@@ -48,7 +46,12 @@ object ImageBindingAdapter {
     @JvmStatic
     @BindingAdapter("android:imageUrl")
     fun setImageUrl(imageView: ImageView, url: String) {
-        Glide.with(imageView.context).load(url).into(imageView)
+        if(url?.isEmpty()) return;
+
+        Picasso.get()
+                .load(url)
+                .placeholder(R.drawable.image2)
+                .into(imageView)
     }
 }
 
@@ -56,9 +59,8 @@ object VideoBindingAdapter {
     @JvmStatic
     @BindingAdapter("android:videoUrl")
     fun setVideoUrl(videoView: VideoView, url: String) {
-        //videoView.setMediaController(MediaController(videoView.context))
         val uri = Uri.parse(url)
         videoView.setVideoURI(uri)
-        videoView.seekTo(500)
+        videoView.seekTo(100)
     }
 }

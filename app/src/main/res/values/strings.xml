@@ -15,4 +15,12 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+
+    <!--Header-->
+    <string name="all">All Pages</string>
+    <string name="recent">Recent</string>
+    <string name="fav">My Favorites</string>
+    <string name="text_blogs">Text Blogs</string>
+    <string name="audio_blogs">Audio Blogs</string>
+    <string name="video_blogs">vBlogs</string>
 </resources>

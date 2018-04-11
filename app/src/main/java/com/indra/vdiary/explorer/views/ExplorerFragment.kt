@@ -6,6 +6,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -47,16 +48,17 @@ class ExplorerFragment : Fragment() {
         super.onResume()
     }
 
-    private val blogList by lazy {
-        blog_list
+    private val blogListAll by lazy {
+        blog_listAll
     }
 
     private fun updateList(list : List<Content>?) {
         list?.let {
-            blogList.setHasFixedSize(true)
-            blogList.layoutManager = GridLayoutManager(context, COLUMN_COUNT)
+            blogListAll.setHasFixedSize(true)
+            //blogList.layoutManager = GridLayoutManager(context, COLUMN_COUNT)
+            blogListAll.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
-            blogList.adapter = ExplorerAdapter(list) {
+            blogListAll.adapter = ExplorerAdapter(list) {
                 Toast.makeText(context, "${it.title} clicked!", Toast.LENGTH_SHORT).show()
             }
         }

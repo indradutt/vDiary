@@ -19,8 +19,16 @@ open abstract class Content(val title: String,
         return if (previewPath?.isNotEmpty()) View.VISIBLE else View.GONE
     }
 
-    fun isContentAvailable() : Int {
-        return if (contentPath?.isNotEmpty()) View.VISIBLE else View.GONE
+    fun isVideoContent() : Int {
+        return if (contentPath?.isNotEmpty() && previewPath?.isEmpty()) View.VISIBLE else View.GONE
+    }
+
+    fun isTextContent() : Int {
+        return if (contentPath?.isEmpty() && previewPath?.isNotEmpty()) View.VISIBLE else View.GONE
+    }
+
+    fun isAudioContent() : Int {
+        return if (contentPath?.isNotEmpty() && previewPath?.isNotEmpty()) View.VISIBLE else View.GONE
     }
 }
 
