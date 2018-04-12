@@ -10,19 +10,37 @@ import com.indra.vdiary.explorer.model.ExplorerRepo
  * Created by indra.dutt on 4/9/18.
  */
 class ExplorerViewModel : ViewModel() {
-    private val contentList : LiveData<List<Content>>?
+    private val contentListAll: LiveData<List<Content>>?
+    private val contentListRecent : LiveData<List<Content>>?
+    private val contentListDraft : LiveData<List<Content>>?
     private val explorerRepo : ExplorerRepo?
 
     init {
         explorerRepo = ExplorerRepo()  //FIXME: use di
-        contentList = MutableLiveData<List<Content>>()
-        contentList.postValue(null)
+
+        contentListAll = MutableLiveData<List<Content>>()
+        contentListRecent = MutableLiveData<List<Content>>()
+        contentListDraft = MutableLiveData<List<Content>>()
 
         val explorerList = explorerRepo?.getExplorerList()
-        contentList.postValue(explorerList?.value)
+        contentListAll.postValue(explorerList?.value)
+
+        val recentList = explorerRepo?.getRecentList()
+        contentListRecent.postValue(recentList?.value)
+
+        val draftList = explorerRepo?.getDraftList()
+        contentListDraft.postValue(draftList.value)
     }
 
     fun getExplorerList() : LiveData<List<Content>>? {
-        return contentList
+        return contentListAll
+    }
+
+    fun getRecentContentList() : LiveData<List<Content>>? {
+        return contentListRecent
+    }
+
+    fun getDraftList() : LiveData<List<Content>>? {
+        return contentListDraft
     }
 }

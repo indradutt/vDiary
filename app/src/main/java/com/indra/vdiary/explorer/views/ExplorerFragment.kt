@@ -5,7 +5,6 @@ import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -41,7 +40,12 @@ class ExplorerFragment : Fragment() {
         //val explorerVM = ViewModelProviders.of(this)[ExplorerViewModel::class.java]
         // ==>> becomes when using reified
         val explorerVM = getViewModel<ExplorerViewModel>()
+
         explorerVM.getExplorerList()?.observe(this, Observer(this::updateList))
+
+        explorerVM.getRecentContentList()?.observe(this, Observer(this::updateRecentList))
+
+        //explorerVM.getDraftList()?.observe(this, Observer(this::updateDraftList))
     }
 
     override fun onResume() {
@@ -52,13 +56,42 @@ class ExplorerFragment : Fragment() {
         blog_listAll
     }
 
+    private val blogListRecent by lazy {
+        blog_listRecent
+    }
+
+    private val blogListDraft by lazy {
+        blog_listDrafts
+    }
+
     private fun updateList(list : List<Content>?) {
         list?.let {
             blogListAll.setHasFixedSize(true)
-            //blogList.layoutManager = GridLayoutManager(context, COLUMN_COUNT)
             blogListAll.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
             blogListAll.adapter = ExplorerAdapter(list) {
+                Toast.makeText(context, "${it.title} clicked!", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun updateRecentList(list : List<Content>?) {
+        list?.let {
+            blogListRecent.setHasFixedSize(true)
+            blogListRecent.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+
+            blogListRecent.adapter = ExplorerAdapter(list) {
+                Toast.makeText(context, "${it.title} clicked!", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun updateDraftList(list : List<Content>?) {
+        list?.let {
+            blogListDraft.setHasFixedSize(true)
+            blogListDraft.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+
+            blogListDraft.adapter = ExplorerAdapter(list) {
                 Toast.makeText(context, "${it.title} clicked!", Toast.LENGTH_SHORT).show()
             }
         }

@@ -12,6 +12,7 @@ import android.widget.VideoView
 import com.indra.vdiary.BR
 import com.indra.vdiary.R
 import com.indra.vdiary.common.data.Content
+import com.indra.vdiary.common.data.TextContent
 import com.squareup.picasso.Picasso
 
 /**

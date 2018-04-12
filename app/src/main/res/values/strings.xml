@@ -18,9 +18,10 @@
 
     <!--Header-->
     <string name="all">All Pages</string>
-    <string name="recent">Recent</string>
+    <string name="recent">Recent Pages</string>
     <string name="fav">My Favorites</string>
     <string name="text_blogs">Text Blogs</string>
     <string name="audio_blogs">Audio Blogs</string>
     <string name="video_blogs">vBlogs</string>
+    <string name="drafts">My Drafts</string>
 </resources>

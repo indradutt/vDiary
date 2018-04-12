@@ -77,6 +77,35 @@ class ExplorerRepo {
 
         list.add(VideoContent("Big Buck Bunny", Date(), Date(), localPath, ""))
 
+        if (list?.isEmpty()) {
+            list.add(TextContent("No content to display.", "", null, null, "", ""))
+        }
+
+        liveData.value = list
+        return liveData
+    }
+
+    fun getRecentList() : LiveData<List<Content>> {
+        val liveData = MutableLiveData<List<Content>>()
+        val list = ArrayList<Content>()
+
+        list.add(TextContent("Never stop the car on a drive in the dark\n" +
+                "Never look for the truth in your mother's eyes", "Arriving somewhere...", Date(), Date(), "", "http://loremflickr.com/800/600/city?random=1"))
+
+        if (list?.isEmpty()) {
+            list.add(TextContent("No recent content to display.", "", null, null, "", ""))
+        }
+        liveData.value = list
+        return liveData
+    }
+
+    fun getDraftList() : LiveData<List<Content>> {
+        val liveData = MutableLiveData<List<Content>>()
+        val list = ArrayList<Content>()
+
+        if (list?.isEmpty()) {
+            list.add(TextContent("No drafts to display.", "", null, null, "", ""))
+        }
         liveData.value = list
         return liveData
     }
