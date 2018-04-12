@@ -9,29 +9,55 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical" >
 
-            <TextView style="@style/Header" android:text="@string/recent"/>
+            <TextView style="@style/HeaderTextView" android:text="@string/recent"/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/blog_listRecent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
-            <TextView style="@style/Header" android:text="@string/all"/>
+            <TextView style="@style/HeaderTextView" android:text="@string/all"/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/blog_listAll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
-            <TextView style="@style/Header" android:text="@string/drafts" android:visibility="gone"/>
+            <TextView style="@style/HeaderTextView" android:text="@string/drafts" android:visibility="gone"/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/blog_listDrafts"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone"/>
+
+            <TextView style="@style/HeaderTextView" android:text="@string/trending_today" />
+
+            <android.support.v7.widget.CardView
+                style="@style/HomeStyleCard">
+
+                <TextView android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/todo"
+                    android:layout_gravity="center"/>
+            </android.support.v7.widget.CardView>
+
+
+            <TextView style="@style/HeaderTextView" android:text="@string/word_of_the_day" />
+
+            <android.support.v7.widget.CardView
+                style="@style/HomeStyleCard">
+
+                <TextView android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/todo"
+                    android:layout_gravity="center"/>
+            </android.support.v7.widget.CardView>
+
+            <!--Bottom Padding-->
+            <View android:layout_width="match_parent" android:layout_height="10dp" />
 
         </LinearLayout>
 
