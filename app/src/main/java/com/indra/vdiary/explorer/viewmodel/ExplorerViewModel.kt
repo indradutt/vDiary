@@ -5,19 +5,18 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import com.indra.vdiary.common.data.Content
 import com.indra.vdiary.explorer.model.ExplorerRepo
+import javax.inject.Inject
 
 /**
  * Created by indra.dutt on 4/9/18.
  */
-class ExplorerViewModel : ViewModel() {
+class ExplorerViewModel @Inject constructor(var explorerRepo: ExplorerRepo)
+    : ViewModel() {
     private val contentListAll: LiveData<List<Content>>?
     private val contentListRecent : LiveData<List<Content>>?
     private val contentListDraft : LiveData<List<Content>>?
-    private val explorerRepo : ExplorerRepo?
 
     init {
-        explorerRepo = ExplorerRepo()  //FIXME: use di
-
         contentListAll = MutableLiveData<List<Content>>()
         contentListRecent = MutableLiveData<List<Content>>()
         contentListDraft = MutableLiveData<List<Content>>()
@@ -29,7 +28,7 @@ class ExplorerViewModel : ViewModel() {
         contentListRecent.postValue(recentList?.value)
 
         val draftList = explorerRepo?.getDraftList()
-        contentListDraft.postValue(draftList.value)
+        contentListDraft.postValue(draftList?.value)
     }
 
     fun getExplorerList() : LiveData<List<Content>>? {

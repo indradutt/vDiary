@@ -8,12 +8,13 @@ import com.indra.vdiary.common.data.Content
 import com.indra.vdiary.common.data.TextContent
 import com.indra.vdiary.common.data.VideoContent
 import java.util.*
+import javax.inject.Inject
 import kotlin.collections.ArrayList
 
 /**
  * Created by indra.dutt on 4/9/18.
  */
-class ExplorerRepo {
+class ExplorerRepo @Inject constructor() {
 
     fun getExplorerList() : LiveData<List<Content>> {
         val liveData = MutableLiveData<List<Content>>()

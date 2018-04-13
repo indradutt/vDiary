@@ -2,6 +2,7 @@ package com.indra.vdiary.explorer.views
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModel
+import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -10,16 +11,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.indra.vdiary.DiaryApp
 import com.indra.vdiary.R
 import com.indra.vdiary.common.data.Content
+import com.indra.vdiary.di.AppViewModelFactory
+import com.indra.vdiary.di.ExplorerModule
 import com.indra.vdiary.explorer.viewmodel.ExplorerViewModel
 import com.indra.vdiary.utils.inflate
 import kotlinx.android.synthetic.main.fragment_home.*
+import javax.inject.Inject
 
 /**
  * Created by indra.dutt on 3/20/18.
  */
 class ExplorerFragment : Fragment() {
+    @Inject lateinit var factory: ViewModelProvider.Factory
+
     companion object {
         private val TAG = "ExplorerFragment"
         private val COLUMN_COUNT = 2
@@ -28,6 +35,7 @@ class ExplorerFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // We can inject here: DI
+        component.inject(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -50,6 +58,11 @@ class ExplorerFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+    }
+
+    private val component by lazy {
+        val app = activity.application as DiaryApp
+        app.component.plus(ExplorerModule(this))
     }
 
     private val blogListAll by lazy {
@@ -98,6 +111,6 @@ class ExplorerFragment : Fragment() {
     }
 
     private inline fun <reified T : ViewModel> getViewModel() : T {
-        return ViewModelProviders.of(this)[T::class.java]
+        return ViewModelProviders.of(this.activity, factory)[T::class.java]
     }
 }

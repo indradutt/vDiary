@@ -52,4 +52,8 @@ dependencies {
 
     // picasso
     implementation "com.squareup.picasso:picasso:$picasso_version"
+
+    // dagger2
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    compile "com.google.dagger:dagger:$dagger_version"
 }

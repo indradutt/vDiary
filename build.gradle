@@ -5,6 +5,7 @@ buildscript {
     ext.gradle_version = '3.0.1'
     ext.glide_version = '3.7.0'
     ext.picasso_version = '2.71828'
+    ext.dagger_version = '2.15'
     repositories {
         google()
         jcenter()
