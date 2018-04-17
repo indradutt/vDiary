@@ -10,7 +10,7 @@ import javax.inject.Inject
 /**
  * Created by indra.dutt on 4/9/18.
  */
-class ExplorerViewModel @Inject constructor(var explorerRepo: ExplorerRepo)
+class ExplorerViewModel @Inject constructor(private var explorerRepo: ExplorerRepo)
     : ViewModel() {
     private val contentListAll: LiveData<List<Content>>?
     private val contentListRecent : LiveData<List<Content>>?

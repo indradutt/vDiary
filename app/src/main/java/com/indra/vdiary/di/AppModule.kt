@@ -1,6 +1,7 @@
 package com.indra.vdiary.di
 
 import com.indra.vdiary.DiaryApp
+import com.squareup.picasso.Picasso
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -10,4 +11,5 @@ import javax.inject.Singleton
  */
 @Module class AppModule(val app: DiaryApp) {
     @Provides @Singleton fun providesApp() = app
+    //@Provides @Singleton fun providePicasso() : Picasso = Picasso.get()
 }

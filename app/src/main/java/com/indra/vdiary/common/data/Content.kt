@@ -7,28 +7,28 @@ import java.util.*
 /**
  * Created by indra.dutt on 3/20/18.
  */
-open abstract class Content(val title: String,
+abstract class Content(val title: String,
                             val createdTime: Date?,
                             val lastModifiedTime: Date?,
                             var contentPath: String,
                             var previewPath: String) : BaseObservable() {
 
-    open abstract fun getContent() : Any
+    abstract fun getContent() : Any
 
     fun isPreviewAvailable() : Int {
-        return if (previewPath?.isNotEmpty()) View.VISIBLE else View.GONE
+        return if (previewPath.isNotEmpty()) View.VISIBLE else View.GONE
     }
 
     fun isVideoContent() : Int {
-        return if (contentPath?.isNotEmpty() && previewPath?.isEmpty()) View.VISIBLE else View.GONE
+        return if (contentPath.isNotEmpty() && previewPath.isEmpty()) View.VISIBLE else View.GONE
     }
 
     open fun isTextContent() : Int {
-        return if (contentPath?.isEmpty() && previewPath?.isNotEmpty()) View.VISIBLE else View.GONE
+        return if (contentPath.isEmpty() && previewPath.isNotEmpty()) View.VISIBLE else View.GONE
     }
 
     fun isAudioContent() : Int {
-        return if (contentPath?.isNotEmpty() && previewPath?.isNotEmpty()) View.VISIBLE else View.GONE
+        return if (contentPath.isNotEmpty() && previewPath.isNotEmpty()) View.VISIBLE else View.GONE
     }
 }
 
@@ -40,7 +40,7 @@ class TextContent(val summary: String,
                   previewPath: String) : Content(title, createdTime, lastModifiedTime, contentPath, previewPath) {
 
     override fun isTextContent() : Int {
-        return if (summary?.isNotEmpty()) View.VISIBLE else View.GONE
+        return if (summary.isNotEmpty()) View.VISIBLE else View.GONE
     }
     override fun getContent(): String {
         return summary

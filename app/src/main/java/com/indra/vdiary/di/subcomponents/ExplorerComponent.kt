@@ -11,5 +11,5 @@ import dagger.Subcomponent
 @FragmentScope
 @Subcomponent(modules = arrayOf(ExplorerModule::class, RepositoryModule::class))
 interface ExplorerComponent {
-    fun inject(fragment: ExplorerFragment)
+    fun injectTo(fragment: ExplorerFragment)
 }

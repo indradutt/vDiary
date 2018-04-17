@@ -34,7 +34,7 @@ class ExplorerFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // We can inject here: DI
-        component.inject(this)
+        component.injectTo(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -61,7 +61,7 @@ class ExplorerFragment : Fragment() {
 
     private val component by lazy {
         val app = activity.application as DiaryApp
-        app.component.plus(ExplorerModule(this))
+        app.component.plus(ExplorerModule())
     }
 
     private val blogListAll by lazy {

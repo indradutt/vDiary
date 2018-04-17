@@ -1,14 +1,12 @@
 package com.indra.vdiary.di
 
 import com.indra.vdiary.explorer.model.ExplorerRepo
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
 
 /**
  * Created by indra.dutt on 4/13/18.
  */
 @Module abstract class RepositoryModule {
-    @Provides fun providesExplorerRepo() : ExplorerRepo {
-        return ExplorerRepo()
-    }
+    @Binds @FragmentScope abstract fun providesExplorerRepo(explorerRepo: ExplorerRepo) : ExplorerRepo
 }
