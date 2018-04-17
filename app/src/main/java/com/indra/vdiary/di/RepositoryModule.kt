@@ -5,7 +5,7 @@ import dagger.Module
 import dagger.Provides
 
 /**
- * Created by idutt on 4/13/18.
+ * Created by indra.dutt on 4/13/18.
  */
 @Module abstract class RepositoryModule {
     @Provides fun providesExplorerRepo() : ExplorerRepo {

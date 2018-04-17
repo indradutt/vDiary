@@ -1,18 +1,14 @@
-package com.indra.vdiary.di
+package com.indra.vdiary.di.subcomponents
 
+import com.indra.vdiary.di.FragmentScope
+import com.indra.vdiary.di.RepositoryModule
 import com.indra.vdiary.explorer.views.ExplorerFragment
-import dagger.Module
 import dagger.Subcomponent
-import javax.inject.Singleton
 
 /**
- * Created by idutt on 4/12/18.
+ * Created by indra.dutt on 4/17/18.
  */
-@Module class ExplorerModule (fragment: ExplorerFragment) {
-
-}
-
-@ActivityScope
+@FragmentScope
 @Subcomponent(modules = arrayOf(ExplorerModule::class, RepositoryModule::class))
 interface ExplorerComponent {
     fun inject(fragment: ExplorerFragment)

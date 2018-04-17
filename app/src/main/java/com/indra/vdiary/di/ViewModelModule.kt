@@ -8,7 +8,7 @@ import dagger.Module
 import dagger.multibindings.IntoMap
 
 /**
- * Created by idutt on 4/13/18.
+ * Created by indra.dutt on 4/13/18.
  */
 @Module internal abstract class ViewModelModule {
     @Binds

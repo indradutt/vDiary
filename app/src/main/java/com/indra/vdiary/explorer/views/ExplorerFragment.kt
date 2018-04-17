@@ -14,8 +14,7 @@ import android.widget.Toast
 import com.indra.vdiary.DiaryApp
 import com.indra.vdiary.R
 import com.indra.vdiary.common.data.Content
-import com.indra.vdiary.di.AppViewModelFactory
-import com.indra.vdiary.di.ExplorerModule
+import com.indra.vdiary.di.subcomponents.ExplorerModule
 import com.indra.vdiary.explorer.viewmodel.ExplorerViewModel
 import com.indra.vdiary.utils.inflate
 import kotlinx.android.synthetic.main.fragment_home.*
