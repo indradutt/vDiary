@@ -14,7 +14,7 @@ import kotlin.collections.ArrayList
 /**
  * Created by indra.dutt on 4/9/18.
  */
-class ExplorerRepo @Inject constructor() {
+open class ExplorerRepo @Inject constructor() {
 
     fun getExplorerList() : LiveData<List<Content>> {
         val liveData = MutableLiveData<List<Content>>()
