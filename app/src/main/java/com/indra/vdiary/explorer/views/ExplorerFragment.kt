@@ -37,7 +37,7 @@ class ExplorerFragment : Fragment() {
         component.injectTo(this)
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return container?.inflate(R.layout.fragment_home)
     }
 
@@ -60,7 +60,7 @@ class ExplorerFragment : Fragment() {
     }
 
     private val component by lazy {
-        val app = activity.application as DiaryApp
+        val app = activity?.application as DiaryApp
         app.component.plus(ExplorerModule())
     }
 
@@ -110,6 +110,6 @@ class ExplorerFragment : Fragment() {
     }
 
     private inline fun <reified T : ViewModel> getViewModel() : T {
-        return ViewModelProviders.of(this.activity, factory)[T::class.java]
+        return ViewModelProviders.of(this, factory)[T::class.java]
     }
 }
