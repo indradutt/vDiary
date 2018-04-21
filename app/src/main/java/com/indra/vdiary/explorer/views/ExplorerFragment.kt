@@ -5,6 +5,8 @@ import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.support.design.widget.BottomSheetBehavior
+import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
@@ -19,6 +21,13 @@ import com.indra.vdiary.explorer.viewmodel.ExplorerViewModel
 import com.indra.vdiary.utils.inflate
 import kotlinx.android.synthetic.main.fragment_home.*
 import javax.inject.Inject
+import android.support.annotation.NonNull
+import com.indra.vdiary.R.id.fab
+import android.support.v4.view.ViewCompat.animate
+import android.R.attr.scaleX
+import android.R.attr.scaleY
+import android.util.Log
+
 
 /**
  * Created by indra.dutt on 3/20/18.
@@ -44,6 +53,7 @@ class ExplorerFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        initializeFloatingBtn()
         //val explorerVM = ViewModelProviders.of(this)[ExplorerViewModel::class.java]
         // ==>> becomes when using reified
         val explorerVM = getViewModel<ExplorerViewModel>()
@@ -57,6 +67,40 @@ class ExplorerFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+    }
+
+    private fun initializeFloatingBtn() {
+        val fab: FloatingActionButton? = this.view?.findViewById(R.id.fab)
+        val bottomLayout : View? = this.view?.findViewById(R.id.anchored_options)
+        val bottomSheetBehavior = BottomSheetBehavior.from(bottomLayout)
+
+        bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+
+        // set the peek height
+        bottomSheetBehavior.peekHeight = 20
+
+        // set hideable or not
+        bottomSheetBehavior.isHideable = true
+
+        bottomSheetBehavior.setBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
+            override fun onStateChanged(bottomSheet: View, newState: Int) {
+
+                // this part hides the button immediately and waits bottom sheet
+                // to collapse to show
+                Log.d("Indra", "state = "+newState)
+                if (BottomSheetBehavior.STATE_HIDDEN == newState ||
+                        BottomSheetBehavior.STATE_COLLAPSED == newState) {
+                    Log.d("Indra", "collapsed")
+                    fab?.visibility = View.VISIBLE
+                }
+            }
+
+            override fun onSlide(bottomSheet: View, slideOffset: Float) {}
+        });
+        fab?.setOnClickListener( { _ ->
+            bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+            fab?.visibility = View.GONE
+        })
     }
 
     private val component by lazy {
